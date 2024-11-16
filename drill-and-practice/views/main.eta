@@ -1,0 +1,8 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1>Application for repeated practice of learned content</h1>
+<p> This is an application where the admins can add topics. Anyone using the application can view the topics and add questions under the topics of their choice. Anyone can also add answer options. Remember to indicate if the option is true or false.</p>
+<p>If you haven't used the application before, you can start by <a href="/auth/register">registering</a>. If you have been here before, just <a href="/auth/login">log in</a>!</p>
+<p>If you feel confident enough in your abilities and if you have created an account you can take the <a href="/quiz">quiz!</a>
+<p>Here you can take a look at the <a href="/statistics">statistics</a> if you are interested!</p>
+

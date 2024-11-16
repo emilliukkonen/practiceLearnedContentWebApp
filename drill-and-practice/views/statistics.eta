@@ -1,0 +1,12 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Statistics!</h1>
+
+<h2>Amount of topics: <%= it.count %></h2>
+
+<h2>Amount of questions: <%= it.Qcount %></h2>
+
+<h2>Amount of answers: <%= it.Acount %></h2>
+
+<a href="/">Back to main page</a><br/>
+

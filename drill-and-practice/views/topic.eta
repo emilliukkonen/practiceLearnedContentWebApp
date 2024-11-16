@@ -1,0 +1,41 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1>Topic: <%= it.topic.name %>!</h1>
+
+<h2>Current questions</h2>
+
+<% if (it.questions && it.questions.length > 0) { %>
+
+<ul>
+<% it.questions.forEach(question => { %>
+  <li>
+    <a href="/topics/<%= it.topic.id %>/questions/<%= question.id %>"><%= question.question_text %></a>
+  </li>
+<% }); %>
+</ul>
+
+<% } else { %>
+
+<p>None available.</p>
+
+<% } %>
+
+<% if (it.questionData && it.questionData.validationErrors) { %>
+<ul>
+    <% Object.keys(it.questionData.validationErrors).forEach((attribute) => { %>
+        <% Object.values(it.questionData.validationErrors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<h2>Add a Question!</h2>
+
+<form method="POST" action="/topics/<%= it.topic.id %>/questions">
+Question text:<br/>
+<input type="text" name="question_text" value="<%= it.questionData ? it.questionData.question_text : "" %>" /><br/>
+<input type="submit" value="Add"/>
+</form>
+
+<a href="/topics">See topics</a>

@@ -1,0 +1,49 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1><%= it.question.question_text %></h1>
+
+<h2>Current answer options</h2>
+
+<% if (it.options && it.options.length > 0) { %>
+
+<ul>
+<% it.options.forEach(option => { %>
+  <li>
+    <%= option.option_text %> (<%= option.is_correct %>)
+    <form method="POST" action="/topics/<%= it.topic.id %>/questions/<%= it.question.id %>/options/<%= option.id %>/delete" style="display: inline-block;">
+    <input type="submit" value="Delete option" />
+    </form>
+  </li>
+<% }); %>
+</ul>
+
+<% } else { %>
+
+<p>None available.</p>
+<form method="POST" action="/topics/<%= it.topic.id %>/questions/<%= it.question.id %>/delete" style="display: inline-block;">
+    <input type="submit" value="Delete question" />
+</form>
+<% } %>
+
+<% if (it.optionData && it.optionData.validationErrors) { %>
+<ul>
+    <% Object.keys(it.optionData.validationErrors).forEach((attribute) => { %>
+        <% Object.values(it.optionData.validationErrors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+
+<h2>Add a answer option!</h2>
+
+<form method="POST" action="/topics/<%= it.topic.id %>/questions/<%= it.question.id %>/options" >
+Question text:<br/>
+<input type="text" name="option_text" value="<%= it.optionData ? it.optionData.option_text : "" %>" />
+Correct:
+<input type="checkbox" name="is_correct" style="display: inline-block;"/> <br/>
+<input type="submit" value="Add"/>
+</form>
+
+<a href="/topics/<%= it.topic.id %>">Back to the topic</a>

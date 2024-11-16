@@ -1,0 +1,14 @@
+<% layout('./layouts/layout.eta') %>
+
+<h1><%= it.question.question_text %></h1>
+
+<ul>
+<% it.options.forEach(option => { %>
+  <li>
+    <%= option.option_text %>
+    <form method="POST" action="/quiz/<%= it.topic.id %>/questions/<%= it.question.id %>/options/<%= option.id %>" style="display: inline-block;">
+    <input type="submit" value="Choose" />
+    </form>
+  </li>
+<% }); %>
+</ul>
